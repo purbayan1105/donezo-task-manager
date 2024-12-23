@@ -4,6 +4,10 @@ import Image from "next/image";
 import signupSvg from "../../../public/undraw_fill-forms_npwp.svg";
 import { Select, SelectItem } from "@nextui-org/react";
 import FileUpload from "@/components/FileUpload";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { signUpFn } from "@/service/userService";
 
 export const gender = [
   { key: "male", label: "Male" },
@@ -12,8 +16,59 @@ export const gender = [
 ];
 
 const page = () => {
-  const formSubmitHandle = () => {
-    console.log("sibmitted");
+  const [file, setFile] = useState<File | null>(null);
+  const [signupData, setSignupData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    gender: "",
+  });
+
+  const formSubmitHandle = async (e: any) => {
+    e.preventDefault();
+
+    if (
+      signupData.name === "" ||
+      signupData.email === "" ||
+      signupData.password === "" ||
+      signupData.confirmPassword === ""
+    ) {
+      toast.error("Please fill all details");
+    }
+    if (signupData.password !== signupData.confirmPassword) {
+      toast.error("Confirm password does not match");
+    }
+
+    // upload process
+
+    if (!file) {
+      toast.error("Please choose an image file");
+    }
+
+    const formData = new FormData();
+    formData.append("upload_preset", "task_manager_preset");
+    formData.append("file", file as File);
+    const response = await axios.post(
+      "https://api.cloudinary.com/v1_1/doe3ftnti/image/upload",
+      formData
+    );
+
+    const imageUrl = response.data.secure_url;
+    console.log(imageUrl);
+
+    const updatedData = { ...signupData, imageUrl };
+    console.log(updatedData);
+
+    try {
+      const response = await signUpFn(updatedData);
+      console.log(response);
+      toast.success(response.message);
+    } catch (error: any) {
+      console.log(error);
+
+      toast.error(error.response.data.message);
+    }
   };
   return (
     <>
@@ -29,6 +84,9 @@ const page = () => {
           <input
             type="text"
             className=" border-b-1 border-solid border-teal-500 dark:border-teal-200 bg-transparent outline-none"
+            onChange={(e: any) =>
+              setSignupData({ ...signupData, name: e.target.value })
+            }
           />
         </div>
         <div className="">
@@ -36,6 +94,9 @@ const page = () => {
           <input
             type="email"
             className=" border-b-1 border-solid border-teal-500 dark:border-teal-200 bg-transparent outline-none"
+            onChange={(e: any) =>
+              setSignupData({ ...signupData, email: e.target.value })
+            }
           />
         </div>
         <div className="">
@@ -43,6 +104,9 @@ const page = () => {
           <input
             type="password"
             className=" border-b-1 border-solid border-teal-500 dark:border-teal-200 bg-transparent outline-none"
+            onChange={(e: any) =>
+              setSignupData({ ...signupData, password: e.target.value })
+            }
           />
         </div>
 
@@ -51,6 +115,9 @@ const page = () => {
           <input
             type="password"
             className=" border-b-1 border-solid border-teal-500 dark:border-teal-200 bg-transparent outline-none"
+            onChange={(e: any) =>
+              setSignupData({ ...signupData, confirmPassword: e.target.value })
+            }
           />
         </div>
 
@@ -59,9 +126,13 @@ const page = () => {
             label="Select Your gender"
             variant="underlined"
             color="success"
+            onChange={(e: any) =>
+              setSignupData({ ...signupData, gender: e.target.value })
+            }
             className="w-[220px] ">
             {gender.map((option: any) => (
               <SelectItem
+                value={option.key}
                 key={option.key}
                 className="text-black dark:text-white">
                 {option.label}
@@ -70,7 +141,7 @@ const page = () => {
           </Select>
         </div>
         <div className="">
-          <FileUpload />
+          <FileUpload file={file} setFile={setFile} />
         </div>
 
         <button

@@ -10,6 +10,10 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.6.8",
+    "@types/bcrypt": "^5.0.2",
+    "axios": "^1.7.9",
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.5.1",
     "framer-motion": "^11.15.0",
     "jotai": "^2.10.4",
     "mongodb": "^6.12.0",
@@ -17,7 +21,8 @@
     "next": "15.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-icons": "^5.4.0"
+    "react-icons": "^5.4.0",
+    "react-toastify": "^11.0.2"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -1,9 +1,9 @@
+import { profile } from "console";
 import { useState } from "react";
 import { FaFileUpload } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa6";
 
-const FileUpload = () => {
-  const [file, setFile] = useState<File | null>(null);
+const FileUpload = ({ file, setFile }: any) => {
   const [dragging, setDragging] = useState(false);
   const onclickHandle = () => {
     document.getElementById("fileInput")?.click();
