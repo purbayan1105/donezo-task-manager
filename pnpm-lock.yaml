@@ -11,6 +11,12 @@ dependencies:
   '@types/bcrypt':
     specifier: ^5.0.2
     version: 5.0.2
+  '@types/nodemailer':
+    specifier: ^6.4.17
+    version: 6.4.17
+  '@types/otp-generator':
+    specifier: ^4.0.2
+    version: 4.0.2
   axios:
     specifier: ^1.7.9
     version: 1.7.9
@@ -35,6 +41,12 @@ dependencies:
   next:
     specifier: 15.1.2
     version: 15.1.2(react-dom@19.0.0)(react@19.0.0)
+  nodemailer:
+    specifier: ^6.9.16
+    version: 6.9.16
+  otp-generator:
+    specifier: ^4.0.1
+    version: 4.0.1
   react:
     specifier: ^19.0.0
     version: 19.0.0
@@ -3041,6 +3053,16 @@ packages:
     dependencies:
       undici-types: 6.19.8
 
+  /@types/nodemailer@6.4.17:
+    resolution: {integrity: sha512-I9CCaIp6DTldEg7vyUTZi8+9Vo0hi1/T8gv3C89yk1rSAAzoKQ8H8ki/jBYJSFoH/BisgLP8tkZMlQ91CIquww==}
+    dependencies:
+      '@types/node': 20.17.10
+    dev: false
+
+  /@types/otp-generator@4.0.2:
+    resolution: {integrity: sha512-9+qqWzuFb332hXPbLgjUyOXlbcaTQkmkmqQjTduvNuOmPV5fW+iLv70JsVEhdUy0DWi4kY34++HDCaWl6N0AYg==}
+    dev: false
+
   /@types/react-dom@19.0.2(@types/react@19.0.2):
     resolution: {integrity: sha512-c1s+7TKFaDRRxr1TxccIX2u7sfCnc3RxkVyBIUA2lCpyqCF+QoAwQ/CBg7bsMdVwP120HEH143VQezKtef5nCg==}
     peerDependencies:
@@ -3875,6 +3897,11 @@ packages:
       whatwg-url: 5.0.0
     dev: false
 
+  /nodemailer@6.9.16:
+    resolution: {integrity: sha512-psAuZdTIRN08HKVd/E8ObdV6NO7NTBY3KsC30F7M4H1OnmLCUNaS56FpYxyb26zWLSyYF9Ozch9KYHhHegsiOQ==}
+    engines: {node: '>=6.0.0'}
+    dev: false
+
   /nopt@5.0.0:
     resolution: {integrity: sha512-Tbj67rffqceeLpcRXrT7vKAN8CwfPeIBgM7E6iBkmKLV7bEMwpGgYLGv0jACUsECaa/vuxP0IjEont6umdMgtQ==}
     engines: {node: '>=6'}
@@ -3909,6 +3936,11 @@ packages:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
     dependencies:
       wrappy: 1.0.2
+    dev: false
+
+  /otp-generator@4.0.1:
+    resolution: {integrity: sha512-2TJ52vUftA0+J3eque4wwVtpaL4/NdIXDL0gFWFJFVUAZwAN7+9tltMhL7GCNYaHJtuONoier8Hayyj4HLbSag==}
+    engines: {node: '>=14.10.0'}
     dev: false
 
   /package-json-from-dist@1.0.1:

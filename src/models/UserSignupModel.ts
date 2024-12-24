@@ -28,6 +28,14 @@ export const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  otp: {
+    type: String,
+  },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export const User = mongoose.models.user || mongoose.model("user", UserSchema);
